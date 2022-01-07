@@ -76,23 +76,57 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 
     return (
         <ScrollView>
-            <View>
-                <View>
+            <View style={styles.container}>
+                <View style={styles.coverContainer}>
                     <Image
+                        style={styles.cover}
                         source={{
                             uri: showData.image.original
                         }} />
-                    <View>
-                        <Text>{showData.name}</Text>
-                        <Text>{showData.summary}</Text>
+                    <View style={{}}>
+                        <Text style={styles.title}>{showData.name}</Text>
+                        <Text style={styles.description}>{showData.summary}</Text>
                     </View>
-                </View>
-                <View>
                 </View>
             </View>
         </ScrollView>
     );
 };
 
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        width: '100%',
+        height: '100%',
+        padding: 30,
+        backgroundColor: 'white'
+    },
+    title: {
+        fontSize: 30,
+        fontWeight: 'bold',
+    },
+    description: {
+
+    },
+    separator: {
+        marginVertical: 30,
+        height: 1,
+        width: '80%',
+    },
+    coverContainer: {
+        width: '100%',
+        marginBottom: 30,
+        flex: 1,
+        alignItems: 'center',
+    },
+    cover: {
+        resizeMode: 'cover',
+        width: '100%',
+        aspectRatio: 2 / 3,
+        maxHeight: 500,
+        borderRadius: 5,
+    }
+});
 
 export default HomeScreen;
