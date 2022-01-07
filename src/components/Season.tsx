@@ -1,6 +1,6 @@
 import React, { FC, useEffect, useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
-import Episode from "./EpisodePreview";
+import EpisodeThumb from "./EpisodeThumb";
 
 const styles = StyleSheet.create({
 })
@@ -42,7 +42,7 @@ const Season: FC<Props> = ({ seasonId, seasonNumber, epSelect }) => {
             {isVisible && (
                 // Episode list
                 <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                    
+                    {showDataEpisodes.map(e => { return <EpisodeThumb key={Math.random()} episode={e} epSelect={epSelect}/> })}
                 </View>
             )}
         </View>
