@@ -5,15 +5,19 @@ import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
 import { IEpisode, IShowObject } from '../library/ShowInterface';
 import Season from '../components/Season';
+import { RemoveTags } from "../library/RemoveTags";
 
 export interface ISeason {
     id: number,
-    number: number
+    number: number,
 }
 
 const defaultData: IShowObject = {
     id: 0,
-    image: {}
+    summary: '',
+    image: {
+        original: ''
+    }
 }
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
@@ -23,18 +27,21 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const [showData, setShowData] = useState<IShowObject>(defaultData);
     const [showSeasons, setSeasonsData] = useState<ISeason[]>([]);
 
+    navigation.setOptions({ title: `${showData.name}` });
+
     const onEpSelect = (e: IEpisode) => {
         navigation.navigate('Episode', e)
     }
-
-    navigation.setOptions({ title: `${showData.name}` });
 
     useEffect(() => {
         logging.info({ navigation, route });
     }, [logging]);
 
-    const tvShowURL = 'https://api.tvmaze.com/shows/1955';
-    const tvShowSeasonsURL = 'https://api.tvmaze.com/shows/1955/' + 'seasons';
+    // Change this value to search new show
+    const tvShowID = '1955'
+
+    const tvShowURL = `https://api.tvmaze.com/shows/${tvShowID}`;
+    const tvShowSeasonsURL = `${tvShowURL}/${'seasons'}`;
 
     // API Fetch to get show description and season list
     useEffect(() => {
@@ -52,9 +59,6 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             .catch((err) => console.log(err + 'No data found'))
     }, []);
 
-    console.log(showData)
-    console.log(showSeasons)
-
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -62,16 +66,21 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                     <Image
                         style={styles.cover}
                         source={{
-                            uri: showData.image.original
+                            uri: showData.image?.original
                         }} />
                     <View style={{}}>
                         <Text style={styles.title}>{showData.name}</Text>
-                        <Text style={styles.description}>{showData.summary}</Text>
+                        <Text>Premiered: {showData.premiered}</Text>
+                        <Text>Status: {showData.status}</Text>
+                        <Text>{showData.genres?.map(e => <Text>{e} </Text>)}</Text>
+                        <Text style={styles.description}>
+                            {RemoveTags(showData.summary, ['<p>', '</p>', '<b>', '</b>'])}
+                        </Text>
                     </View>
                 </View>
                 <View>
                     {showSeasons.map(e => {
-                        return <Season key={Math.random()} seasonId={e.id} seasonNumber={e.number} epSelect={onEpSelect} />
+                        return <Season key={e.id} seasonId={e.id} seasonNumber={e.number} epSelect={onEpSelect} />
                     })}
                 </View>
             </View>
