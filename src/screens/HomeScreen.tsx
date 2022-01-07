@@ -3,13 +3,13 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
-import { IShowObject } from '../library/ShowInterface';
+import { IEpisode, IShowObject } from '../library/ShowInterface';
+import Season from '../components/Season';
 
-const defaultSeasons: object[] = [
-    {
-        id: 0
-    }
-];
+export interface ISeason {
+    id: number,
+    number: number
+}
 
 const defaultData: IShowObject = {
     id: 0,
@@ -21,8 +21,11 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const { navigation, route } = props;
 
     const [showData, setShowData] = useState<IShowObject>(defaultData);
-    const [showSeasons, setSeasonsData] = useState(defaultSeasons);
-    // const [epSelected, setEpSelected] = useState(false);
+    const [showSeasons, setSeasonsData] = useState<ISeason[]>([]);
+
+    const onEpSelect = (e: IEpisode) => {
+        navigation.navigate('Episode', e)
+    }
 
     navigation.setOptions({ title: `${showData.name}` });
 
@@ -65,6 +68,11 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                         <Text style={styles.title}>{showData.name}</Text>
                         <Text style={styles.description}>{showData.summary}</Text>
                     </View>
+                </View>
+                <View>
+                    {showSeasons.map(e => {
+                        return <Season key={Math.random()} seasonId={e.id} seasonNumber={e.number} epSelect={onEpSelect} />
+                    })}
                 </View>
             </View>
         </ScrollView>

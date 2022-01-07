@@ -1,22 +1,21 @@
-// export interface IShowObject {
-//     name: string,
-//     summary: string,
-//     image: {
-//         original: string
-//     }
-// }
-
-export interface SeasonsObject {
-    seasons: [
-        season: SeasonObject
-    ]
-}
-
-export type SeasonObject = {
-    season: {
-        id: number
+export interface IEpisode{
+    name: string,
+    number: number,
+    image: {
+        medium: string,
+        original: string,
     }
+    season: string,
+    runtime: number,
+    airdate: string,
+    summary: string
 }
+
+export interface ISeason {
+    id: number,
+    number: number
+}
+
 
 export interface IShowObject {
     id: number,
