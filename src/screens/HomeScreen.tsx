@@ -4,26 +4,6 @@ import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
 
-interface IShowObject {
-    name: string,
-    summary: string,
-    image: {
-        original: string
-    }
-}
-
-interface SeasonsObject {
-    seasons: [
-        season: SeasonObject
-    ]
-}
-
-type SeasonObject = {
-    season: {
-        id: number
-    }
-}
-
 const defaultSeasons: object[] = [
     {
         id: 0
