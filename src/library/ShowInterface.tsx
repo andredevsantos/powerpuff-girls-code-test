@@ -38,7 +38,7 @@ export interface IShowObject {
     dvdCountry?: any,
     externals?: IShowExternals,
     image?: IShowImage,
-    summary?: string,
+    summary: string,
     updated?: number,
     _links?: IShowLinks
 }
