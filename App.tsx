@@ -6,7 +6,7 @@ import { useLogging } from './src/hooks/useLogging';
 
 const Stack = createStackNavigator();
 
-export default function App() {
+const App = () => {
     const [logging] = useLogging('Application');
 
     useEffect(() => {
@@ -23,3 +23,5 @@ export default function App() {
         </NavigationContainer>
     );
 }
+
+export default App;
