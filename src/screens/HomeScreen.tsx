@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
-import { IShowObject } from '../library/Interfaces';
+import { IShowObject } from '../library/ShowInterface';
 
 const defaultSeasons: object[] = [
     {
@@ -22,7 +22,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 
     const [showData, setShowData] = useState<IShowObject>(defaultData);
     const [showSeasons, setSeasonsData] = useState(defaultSeasons);
-    const [epSelected, setEpSelected] = useState(false);
+    // const [epSelected, setEpSelected] = useState(false);
 
     navigation.setOptions({ title: `${showData.name}` });
 
