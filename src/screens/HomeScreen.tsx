@@ -12,22 +12,19 @@ const defaultSeasons: object[] = [
 ];
 
 const defaultData: IShowObject = {
-    name: '',
-    summary: '',
-    image: {
-        original: ''
-    }
+    id: 0,
+    image: {}
 }
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const [logging] = useLogging('Home Screen');
     const { navigation, route } = props;
 
-    const [showData, setShowData] = useState(defaultData);
+    const [showData, setShowData] = useState<IShowObject>(defaultData);
     const [showSeasons, setSeasonsData] = useState(defaultSeasons);
     const [epSelected, setEpSelected] = useState(false);
 
-    navigation.setOptions({ title: `${showData.name}`});
+    navigation.setOptions({ title: `${showData.name}` });
 
     useEffect(() => {
         logging.info({ navigation, route });
@@ -53,7 +50,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     }, []);
 
     console.log(showData)
-      console.log(showSeasons)
+    console.log(showSeasons)
 
     return (
         <ScrollView>
