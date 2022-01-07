@@ -1,35 +1,98 @@
-import React, { useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
+
+interface IShowObject {
+    name: string,
+    summary: string,
+    image: {
+        original: string
+    }
+}
+
+interface SeasonsObject {
+    seasons: [
+        season: SeasonObject
+    ]
+}
+
+type SeasonObject = {
+    season: {
+        id: number
+    }
+}
+
+const defaultSeasons: object[] = [
+    {
+        id: 0
+    }
+];
+
+const defaultData: IShowObject = {
+    name: '',
+    summary: '',
+    image: {
+        original: ''
+    }
+}
 
 const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const [logging] = useLogging('Home Screen');
     const { navigation, route } = props;
 
+    const [showData, setShowData] = useState(defaultData);
+    const [showSeasons, setSeasonsData] = useState(defaultSeasons);
+    const [epSelected, setEpSelected] = useState(false);
+
+    navigation.setOptions({ title: `${showData.name}`});
+
     useEffect(() => {
         logging.info({ navigation, route });
     }, [logging]);
 
+    const tvShowURL = 'https://api.tvmaze.com/shows/1955';
+    const tvShowSeasonsURL = 'https://api.tvmaze.com/shows/1955/' + 'seasons';
+
+    // API Fetch to get show description and season list
+    useEffect(() => {
+        Promise.all([
+            fetch(tvShowURL),
+            fetch(tvShowSeasonsURL)
+        ]).then(async ([res, ress]) => {
+            const show = await res.json()
+            const seasons = await ress.json()
+            return [show, seasons]
+        }).then(data => {
+            setShowData(data[0])
+            setSeasonsData(data[1])
+        })
+            .catch((err) => console.log(err + 'No data found'))
+    }, []);
+
+    console.log(showData)
+      console.log(showSeasons)
+
     return (
         <ScrollView>
-            <View style={styles.container}>
-                <Text>Home Screen</Text>
-                <Button title="Read more" onPress={() => navigation.navigate('Episode')} />
-                <StatusBar style="auto" />
+            <View>
+                <View>
+                    <Image
+                        source={{
+                            uri: showData.image.original
+                        }} />
+                    <View>
+                        <Text>{showData.name}</Text>
+                        <Text>{showData.summary}</Text>
+                    </View>
+                </View>
+                <View>
+                </View>
             </View>
         </ScrollView>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center'
-    }
-});
 
 export default HomeScreen;
