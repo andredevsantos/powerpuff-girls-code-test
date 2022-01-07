@@ -1,20 +1,25 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import routes from './src/config/routes';
+import { useLogging } from './src/hooks/useLogging';
+
+const Stack = createStackNavigator();
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
+    const [logging] = useLogging('Application');
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+    useEffect(() => {
+        logging.info('Loading application.');
+    }, [logging]);
+
+    return (
+        <NavigationContainer>
+            <Stack.Navigator initialRouteName={'Home'}>
+                {routes.map((route, index) => (
+                    <Stack.Screen key={index} name={route.name} component={route.component} />
+                ))}
+            </Stack.Navigator>
+        </NavigationContainer>
+    );
+}
