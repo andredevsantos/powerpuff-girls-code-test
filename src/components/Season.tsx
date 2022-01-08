@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
+import { IEpisode } from "../library/ShowInterface";
+import FadeUp from "./animated/FadeUp";
 import EpisodeThumb from "./EpisodeThumb";
 
 const styles = StyleSheet.create({
@@ -12,7 +14,7 @@ export type Props = {
 }
 
 const Season: FC<Props> = ({ seasonId, seasonNumber, epSelect }) => {
-    const [showDataEpisodes, setshowDataEpisodes] = useState([]);
+    const [showDataEpisodes, setshowDataEpisodes] = useState<IEpisode[]>([]);
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
@@ -41,8 +43,14 @@ const Season: FC<Props> = ({ seasonId, seasonNumber, epSelect }) => {
             </View>
             {isVisible && (
                 // Episode list
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around'}}>
-                    {showDataEpisodes.map(e => { return <EpisodeThumb key={Math.random()} episode={e} epSelect={epSelect}/> })}
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                    {showDataEpisodes.map((e, i) => {
+                        return (
+                            <FadeUp delay={200 * (i / 2)}>
+                                <EpisodeThumb key={e.id} episode={e} epSelect={epSelect} />
+                            </FadeUp>
+                        )
+                    })}
                 </View>
             )}
         </View>
