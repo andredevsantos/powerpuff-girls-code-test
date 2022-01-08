@@ -1,14 +1,14 @@
 export interface IEpisode{
-    name: string,
-    number: number,
-    image: {
-        medium: string,
-        original: string,
+    name?: string,
+    number?: number,
+    image?: {
+        medium?: string,
+        original?: string,
     }
-    season: string,
-    runtime: number,
-    airdate: string,
-    summary: string
+    season?: string,
+    runtime?: number,
+    airdate?: string,
+    summary?: string
 }
 
 export interface ISeason {
