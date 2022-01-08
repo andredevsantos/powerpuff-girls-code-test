@@ -4,7 +4,8 @@ import { Animated, View } from "react-native"
 export type Props = {
     children: any,
     delay?: number,
-    duration?: number | 10000
+    duration?: number | 10000,
+    styles?: Object
 }
 
 const FadeUp = (props: Props) => {
@@ -30,7 +31,7 @@ const FadeUp = (props: Props) => {
 
 
     return (
-        <Animated.View style={{ opacity: opacity, transform: [{ translateY: position }] }}>{props.children}</Animated.View>
+        <Animated.View style={{ ...props.styles, opacity: opacity, transform: [{ translateY: position }] }}>{props.children}</Animated.View>
     )
 }
 

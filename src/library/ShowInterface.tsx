@@ -1,4 +1,5 @@
-export interface IEpisode{
+export interface IEpisode {
+    id: number,
     name?: string,
     number?: number,
     image?: {

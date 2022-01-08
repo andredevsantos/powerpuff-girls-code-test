@@ -10,6 +10,7 @@ export type Props = {
 
 const EpisodeThumb: React.FunctionComponent<Props> = ({ episode, epSelect }) => {
     const episodeObj: IEpisode = {
+        id: episode.id ?? Math.random(),
         name: episode.name ?? 'Name not available',
         number: episode.number ?? 0,
         image: {

@@ -4,8 +4,10 @@ import { Button, Image, StyleSheet, Text, View } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { useState } from 'react';
+import { RemoveTags } from '../library/RemoveTags';
+import { Route, RouteProp } from '@react-navigation/native';
 
-export interface IEpisode{
+export interface IEpisode {
     name: string,
     image: {
         original: string,
@@ -19,7 +21,8 @@ export interface IEpisode{
 const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const [logging] = useLogging('Episode Screen');
     const { navigation, route } = props;
-    const [epData, setEpData] = useState();
+    const [epData, setEpData] = useState<IEpisode>();
+    // setEpData(prevState => prevState = route.params)
 
     navigation.setOptions({ title: `Episode ${route.params.number} from season ${route.params.season}` });
 
@@ -37,7 +40,7 @@ const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             <Text style={styles.textDetails}>Episode {route.params.number} from season {route.params.season}</Text>
             <Text style={styles.textDetails}>Runtime: {route.params.runtime}</Text>
             <Text style={styles.textDetails}>Airdate: {route.params.airdate}</Text>
-            <Text>{route.params.summary}</Text>
+            <Text>{RemoveTags(route.params.summary, ['<p>', '</p>'])}</Text>
         </View>
     );
 };
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
     subTitle: {
         fontSize: 20,
     },
-    textDetailsSmall: {
+    textDetails: {
         fontSize: 13,
         marginVertical: 6
     },
