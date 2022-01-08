@@ -9,6 +9,14 @@ export type Props = {
 }
 
 const EpisodeThumb: React.FunctionComponent<Props> = ({ episode, epSelect }) => {
+    const episodeObj: IEpisode = {
+        name: episode.name ?? 'Name not available',
+        number: episode.number ?? 0,
+        image: {
+            medium: episode.image?.medium ?? 'https://via.placeholder.com/150',
+        },
+        summary: episode.summary ?? 'Summary not available'
+    }
 
     const onPressHandler = () => {
         epSelect(episode)
@@ -21,17 +29,19 @@ const EpisodeThumb: React.FunctionComponent<Props> = ({ episode, epSelect }) => 
         return cutSummary
     }
 
+    // let image = episode.image.medium;
+
     return (
         <View style={styles.container}>
             <Text style={{ fontSize: 15, fontWeight: "bold" }}>{episode.number}. {episode.name}</Text>
             <View style={styles.imageContainer}>
                 <Image style={styles.image}
-                    source={{ uri: episode.image.medium }}
+                    source={{ uri: episodeObj.image?.medium}}
                 />
             </View>
             <View style={styles.descriptionContainer}>
                 <Text style={{ width: 'auto', flexShrink: 1, marginBottom: 10 }}>
-                    {descriptionText(episode.summary)}
+                    {descriptionText(episodeObj.summary)}
                 </Text>
                 <Button
                     onPress={onPressHandler}
