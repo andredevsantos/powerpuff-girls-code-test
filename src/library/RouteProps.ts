@@ -1,6 +1,6 @@
 import { IStackScreenProps } from './StackScreenProps';
 
-export default interface IRouteProps {
+export interface IRouteProps {
     component: React.FunctionComponent<IStackScreenProps>;
     name: string;
 }

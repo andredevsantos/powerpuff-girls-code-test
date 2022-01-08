@@ -5,9 +5,6 @@ import FadeUp from "./animated/FadeUp";
 import EpisodeThumb from "./EpisodeThumb";
 import { SubTitleText } from "./styled/StyledTextComponents";
 
-const styles = StyleSheet.create({
-})
-
 export type Props = {
     seasonId: number,
     seasonNumber: number,
@@ -27,7 +24,7 @@ const Season: React.FunctionComponent<Props> = ({ seasonId, seasonNumber, epSele
                 })
                 .catch((err) => console.log(err + 'No data found'))
         }
-    }, []);
+    });
 
     const onPressHandler = () => {
         setIsVisible(!isVisible)
@@ -44,7 +41,7 @@ const Season: React.FunctionComponent<Props> = ({ seasonId, seasonNumber, epSele
             </View>
             {isVisible && (
                 // Episode list
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around' }}>
+                <View style={{ flexDirection: 'row', flexWrap: 'wrap', justifyContent: 'space-around', flexShrink: 1}}>
                     {showDataEpisodes.map((e, i) => {
                         return (
                             <FadeUp delay={200 * (i / 2)}>

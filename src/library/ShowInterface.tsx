@@ -5,11 +5,11 @@ export interface IEpisode {
     image?: {
         medium?: string,
         original?: string,
-    }
+    },
     season?: string,
     runtime?: number,
     airdate?: string,
-    summary?: string
+    summary: string
 }
 
 export interface ISeason {

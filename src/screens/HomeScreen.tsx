@@ -59,19 +59,21 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             setSeasonsData(data[1])
         })
             .catch((err) => console.log(err + 'No data found'))
-    }, []);
+    });
 
 
     return (
         <ScrollView>
             <View style={styles.container}>
-                <View style={styles.coverContainer}>
-                    <Image
-                        style={styles.cover}
-                        source={{
-                            uri: showData.image?.original
-                        }} />
-                    <FadeUp delay={200}>
+                <View style={styles.ShowIntroContainer}>
+                    <View style={styles.ShowImageContainer}>
+                        <Image
+                            style={styles.ShowImage}
+                            source={{
+                                uri: showData.image?.original
+                            }} />
+                    </View>
+                    <FadeUp delay={200} styles={{width: '100%', flexShrink: 1}}>
                         <TitleText>{showData.name}</TitleText>
                         <DetailText>{showData.genres?.map(e => <Text>{e}     </Text>)}</DetailText>
                         <DetailText>Premiered: {showData.premiered}</DetailText>
@@ -84,7 +86,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                 <View>
                     {showSeasons.map((e, i) => {
                         return (
-                            <FadeUp delay={200 * (i / 2)}>
+                            <FadeUp delay={200 * (i / 2)} >
                                 <Season key={e.id} seasonId={e.id} seasonNumber={e.number} epSelect={onEpSelect} />
                             </FadeUp>
                         )
@@ -102,35 +104,34 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         padding: 30,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
     },
     title: {
         fontSize: 30,
         fontWeight: 'bold',
-    },
-    description: {
-
     },
     separator: {
         marginVertical: 30,
         height: 1,
         width: '80%',
     },
-    coverContainer: {
-        width: '100%',
+    ShowIntroContainer: {
+        width: 'auto',
         marginBottom: 30,
         flex: 1,
-        alignItems: 'center',
+        flexDirection: 'column',
+        flexWrap: 'wrap',
+        alignItems: 'center'
     },
-    imageContainer: {
-        minWidth: '100%',
-        // resizeMode: 'cover'
+    ShowImageContainer: {
+        // width: 'auto',
+        minWidth: 260,
     },
-    cover: {
+    ShowImage: {
         resizeMode: 'cover',
         width: '100%',
         aspectRatio: 2 / 3,
-        maxHeight: 500,
+        maxHeight: 400,
         borderRadius: 5,
     }
 });

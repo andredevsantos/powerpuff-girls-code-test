@@ -31,8 +31,6 @@ const EpisodeThumb: React.FunctionComponent<Props> = ({ episode, epSelect }) => 
         return cutSummary
     }
 
-    // let image = episode.image.medium;
-
     return (
         <View style={styles.container}>
             <BodyText style={{ fontWeight: "bold" }}>{episode.number}. {episode.name}</BodyText>
