@@ -1,8 +1,9 @@
-import React, { FC, useEffect, useState } from "react";
-import { View, Text, StyleSheet, Button } from "react-native";
+import React, { useEffect, useState } from "react";
+import { View, StyleSheet, Button } from "react-native";
 import { IEpisode } from "../library/ShowInterface";
 import FadeUp from "./animated/FadeUp";
 import EpisodeThumb from "./EpisodeThumb";
+import { SubTitleText } from "./styled/StyledTextComponents";
 
 const styles = StyleSheet.create({
 })
@@ -13,7 +14,7 @@ export type Props = {
     epSelect: Function
 }
 
-const Season: FC<Props> = ({ seasonId, seasonNumber, epSelect }) => {
+const Season: React.FunctionComponent<Props> = ({ seasonId, seasonNumber, epSelect }) => {
     const [showDataEpisodes, setshowDataEpisodes] = useState<IEpisode[]>([]);
     const [isVisible, setIsVisible] = useState(false);
 
@@ -35,7 +36,7 @@ const Season: FC<Props> = ({ seasonId, seasonNumber, epSelect }) => {
     return (
         <View style={{ marginTop: 40, width: '100%' }}>
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between" }}>
-                <Text style={{ fontSize: 20, fontWeight: "bold" }}>Season {seasonNumber}</Text>
+                <SubTitleText>Season {seasonNumber}</SubTitleText>
                 <Button
                     title={isVisible ? 'Hide season' : 'Show season'}
                     onPress={onPressHandler}

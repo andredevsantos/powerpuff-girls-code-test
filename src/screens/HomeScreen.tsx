@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Animated, StyleSheet, Text, View, Image } from 'react-native';
+import { StyleSheet, Text, View, Image } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -7,6 +7,7 @@ import { IEpisode, IShowObject } from '../library/ShowInterface';
 import Season from '../components/Season';
 import { RemoveTags } from "../library/RemoveTags";
 import FadeUp from '../components/animated/FadeUp';
+import { BodyText, DetailText, TitleText } from '../components/styled/StyledTextComponents';
 
 export interface ISeason {
     id: number,
@@ -71,13 +72,13 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                             uri: showData.image?.original
                         }} />
                     <FadeUp delay={200}>
-                        <Text style={styles.title}>{showData.name}</Text>
-                        <Text>Premiered: {showData.premiered}</Text>
-                        <Text>Status: {showData.status}</Text>
-                        <Text>{showData.genres?.map(e => <Text>{e} </Text>)}</Text>
-                        <Text style={styles.description}>
+                        <TitleText>{showData.name}</TitleText>
+                        <DetailText>{showData.genres?.map(e => <Text>{e}     </Text>)}</DetailText>
+                        <DetailText>Premiered: {showData.premiered}</DetailText>
+                        <DetailText>Status: {showData.status}</DetailText>
+                        <BodyText>
                             {RemoveTags(showData.summary, ['<p>', '</p>', '<b>', '</b>'])}
-                        </Text>
+                        </BodyText>
                     </FadeUp>
                 </View>
                 <View>

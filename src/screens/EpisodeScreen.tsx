@@ -1,11 +1,10 @@
 import React, { useEffect } from 'react';
-import { StatusBar } from 'expo-status-bar';
-import { Button, Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { useState } from 'react';
 import { RemoveTags } from '../library/RemoveTags';
-import { Route, RouteProp } from '@react-navigation/native';
+import { BodyText, DetailText, TitleText } from '../components/styled/StyledTextComponents';
 
 export interface IEpisode {
     name: string,
@@ -36,11 +35,11 @@ const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             style={{width: '100%', aspectRatio: 3/2}}
                 source={{ uri: route.params.image.original }}
             />
-            <Text style={styles.title}>{route.params.name}</Text>
-            <Text style={styles.textDetails}>Episode {route.params.number} from season {route.params.season}</Text>
-            <Text style={styles.textDetails}>Runtime: {route.params.runtime}</Text>
-            <Text style={styles.textDetails}>Airdate: {route.params.airdate}</Text>
-            <Text>{RemoveTags(route.params.summary, ['<p>', '</p>'])}</Text>
+            <TitleText>{route.params.name}</TitleText>
+            <DetailText>Episode {route.params.number} from season {route.params.season}</DetailText>
+            <DetailText>Runtime: {route.params.runtime}</DetailText>
+            <DetailText>Airdate: {route.params.airdate}</DetailText>
+            <BodyText>{RemoveTags(route.params.summary, ['<p>', '</p>'])}</BodyText>
         </View>
     );
 };
