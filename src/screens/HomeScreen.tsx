@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React, { useEffect, useRef, useState } from 'react';
+import { Animated, StyleSheet, Text, View, Image } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
 import { IEpisode, IShowObject } from '../library/ShowInterface';
 import Season from '../components/Season';
 import { RemoveTags } from "../library/RemoveTags";
+import FadeUp from '../components/animated/FadeUp';
 
 export interface ISeason {
     id: number,
@@ -59,6 +60,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             .catch((err) => console.log(err + 'No data found'))
     }, []);
 
+
     return (
         <ScrollView>
             <View style={styles.container}>
@@ -68,7 +70,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                         source={{
                             uri: showData.image?.original
                         }} />
-                    <View style={{}}>
+                    <FadeUp delay={200}>
                         <Text style={styles.title}>{showData.name}</Text>
                         <Text>Premiered: {showData.premiered}</Text>
                         <Text>Status: {showData.status}</Text>
@@ -76,11 +78,15 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                         <Text style={styles.description}>
                             {RemoveTags(showData.summary, ['<p>', '</p>', '<b>', '</b>'])}
                         </Text>
-                    </View>
+                    </FadeUp>
                 </View>
                 <View>
-                    {showSeasons.map(e => {
-                        return <Season key={e.id} seasonId={e.id} seasonNumber={e.number} epSelect={onEpSelect} />
+                    {showSeasons.map((e, i) => {
+                        return (
+                            <FadeUp delay={200 * (i / 2)}>
+                                <Season key={e.id} seasonId={e.id} seasonNumber={e.number} epSelect={onEpSelect} />
+                            </FadeUp>
+                        )
                     })}
                 </View>
             </View>
@@ -114,6 +120,10 @@ const styles = StyleSheet.create({
         marginBottom: 30,
         flex: 1,
         alignItems: 'center',
+    },
+    imageContainer: {
+        minWidth: '100%',
+        // resizeMode: 'cover'
     },
     cover: {
         resizeMode: 'cover',
