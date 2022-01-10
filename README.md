@@ -1,4 +1,12 @@
-# **Table of contents**
+- [Running the app](#running-the-app)
+- [Structure](#structure)
+  - [Screens](#screens)
+    - [Changing default screen](#changing-default-screen)
+    - [Creating new screens](#creating-new-screens)
+    - [Existing screens](#existing-screens)
+  - [Custom components](#custom-components)
+    - [Animations](#animations)
+    - [**Native components**](#native-components)
 
 # Running the app
 
