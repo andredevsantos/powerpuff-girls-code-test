@@ -1,3 +1,4 @@
+- **Table of contents**
 - [Running the app](#running-the-app)
 - [Structure](#structure)
   - [Screens](#screens)
