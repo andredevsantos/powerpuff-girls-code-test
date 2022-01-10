@@ -1,4 +1,4 @@
-import IRouteProps from '../library/RouteProps';
+import { IRouteProps } from '../library/RouteProps';
 import EpisodeScreen from '../screens/EpisodeScreen';
 import HomeScreen from '../screens/HomeScreen';
 

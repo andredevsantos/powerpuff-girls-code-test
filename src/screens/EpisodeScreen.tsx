@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, View } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { useState } from 'react';
@@ -21,7 +21,6 @@ const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const [logging] = useLogging('Episode Screen');
     const { navigation, route } = props;
     const [epData, setEpData] = useState<IEpisode>();
-    // setEpData(prevState => prevState = route.params)
 
     navigation.setOptions({ title: `Episode ${route.params.number} from season ${route.params.season}` });
 

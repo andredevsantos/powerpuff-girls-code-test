@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { StyleSheet, View, Image } from 'react-native';
 import { useLogging } from '../hooks/useLogging';
 import { IStackScreenProps } from '../library/StackScreenProps';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -8,6 +8,7 @@ import Season from '../components/Season';
 import { RemoveTags } from "../library/RemoveTags";
 import FadeUp from '../components/animated/FadeUp';
 import { BodyText, DetailText, TitleText } from '../components/styled/StyledTextComponents';
+import GenreTag from '../components/GenreTag';
 
 export interface ISeason {
     id: number,
@@ -59,7 +60,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             setSeasonsData(data[1])
         })
             .catch((err) => console.log(err + 'No data found'))
-    });
+    }, []);
 
 
     return (
@@ -75,7 +76,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                     </View>
                     <FadeUp delay={200} styles={{width: '100%', flexShrink: 1}}>
                         <TitleText>{showData.name}</TitleText>
-                        <DetailText>{showData.genres?.map(e => <Text>{e}     </Text>)}</DetailText>
+                        <DetailText>{showData.genres?.map(e => <GenreTag>{e}</GenreTag>)}</DetailText>
                         <DetailText>Premiered: {showData.premiered}</DetailText>
                         <DetailText>Status: {showData.status}</DetailText>
                         <BodyText>
@@ -104,16 +105,16 @@ const styles = StyleSheet.create({
         width: '100%',
         height: '100%',
         padding: 30,
-        backgroundColor: 'white',
+        backgroundColor: 'white'
     },
     title: {
         fontSize: 30,
-        fontWeight: 'bold',
+        fontWeight: 'bold'
     },
     separator: {
         marginVertical: 30,
         height: 1,
-        width: '80%',
+        width: '80%'
     },
     ShowIntroContainer: {
         width: 'auto',
@@ -124,15 +125,14 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     ShowImageContainer: {
-        // width: 'auto',
-        minWidth: 260,
+        minWidth: 260
     },
     ShowImage: {
         resizeMode: 'cover',
         width: '100%',
         aspectRatio: 2 / 3,
         maxHeight: 400,
-        borderRadius: 5,
+        borderRadius: 20
     }
 });
 

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from "react"
+import React from "react"
 import { StyleSheet, Image, Button, Text, View } from 'react-native';
 import { RemoveTags } from "../library/RemoveTags";
 import { IEpisode } from "../library/ShowInterface";
@@ -6,7 +6,7 @@ import { BodyText, SmallText } from "./styled/StyledTextComponents";
 
 export type Props = {
     episode: IEpisode,
-    epSelect: Function
+    epSelect: Function,
 }
 
 const EpisodeThumb: React.FunctionComponent<Props> = ({ episode, epSelect }) => {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, StyleSheet, Button } from "react-native";
+import { View, Button } from "react-native";
 import { IEpisode } from "../library/ShowInterface";
 import FadeUp from "./animated/FadeUp";
 import EpisodeThumb from "./EpisodeThumb";
@@ -24,7 +24,7 @@ const Season: React.FunctionComponent<Props> = ({ seasonId, seasonNumber, epSele
                 })
                 .catch((err) => console.log(err + 'No data found'))
         }
-    });
+    }, []);
 
     const onPressHandler = () => {
         setIsVisible(!isVisible)
@@ -35,7 +35,7 @@ const Season: React.FunctionComponent<Props> = ({ seasonId, seasonNumber, epSele
             <View style={{ flex: 1, flexDirection: 'row', justifyContent: "space-between" }}>
                 <SubTitleText>Season {seasonNumber}</SubTitleText>
                 <Button
-                    title={isVisible ? 'Hide season' : 'Show season'}
+                    title={isVisible ? 'Close season' : 'Open season'}
                     onPress={onPressHandler}
                 />
             </View>
