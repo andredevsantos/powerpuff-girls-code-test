@@ -12,7 +12,7 @@
 
 # Running the app
 
-There’re 3 ways of running this app, the first one is to clone the repo and run it locally. Alternatively, you can check the version hosted on [**Snack**](https://snack.expo.dev/@andredevsantos/curious-truffles), or download the [**.apk**](https://drive.google.com/file/d/1IFVJ3c9iJANK8k48c2tT1HF7U1ZUd9as/view?usp=sharing)
+There’re several ways of running this app, the first one is to clone the repo and run it locally. Alternatively, you can check the version hosted on [**Snack**](https://snack.expo.dev/@andredevsantos/curious-truffles), or download the [**.apk**](https://drive.google.com/file/d/1IFVJ3c9iJANK8k48c2tT1HF7U1ZUd9as/view?usp=sharing)
 
 **Clone repo.**
 
