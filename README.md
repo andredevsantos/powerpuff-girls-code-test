@@ -8,6 +8,7 @@
   - [Custom components](#custom-components)
     - [Animations](#animations)
     - [**Native components**](#native-components)
+    - [**Other components**](#other-components)
 
 # Running the app
 
