@@ -22,6 +22,7 @@ const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const { navigation, route } = props;
     const [epData, setEpData] = useState<IEpisode>();
 
+    // Sets header title
     navigation.setOptions({ title: `Episode ${route.params.number} from season ${route.params.season}` });
 
     useEffect(() => {
@@ -38,7 +39,7 @@ const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
             <DetailText>Episode {route.params.number} from season {route.params.season}</DetailText>
             <DetailText>Runtime: {route.params.runtime}</DetailText>
             <DetailText>Airdate: {route.params.airdate}</DetailText>
-            <BodyText>{RemoveTags(route.params.summary, ['<p>', '</p>'])}</BodyText>
+            <BodyText>{RemoveTags(route.params.summary)}</BodyText>
         </View>
     );
 };

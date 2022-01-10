@@ -30,8 +30,10 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     const [showData, setShowData] = useState<IShowObject>(defaultData);
     const [showSeasons, setSeasonsData] = useState<ISeason[]>([]);
 
+    // Sets header title
     navigation.setOptions({ title: `${showData.name}` });
 
+    // Navigates to episode page and passes episode info
     const onEpSelect = (e: IEpisode) => {
         navigation.navigate('Episode', e)
     }
@@ -80,7 +82,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
                         <DetailText>Premiered: {showData.premiered}</DetailText>
                         <DetailText>Status: {showData.status}</DetailText>
                         <BodyText>
-                            {RemoveTags(showData.summary, ['<p>', '</p>', '<b>', '</b>'])}
+                            {RemoveTags(showData.summary)}
                         </BodyText>
                     </FadeUp>
                 </View>

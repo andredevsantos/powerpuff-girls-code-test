@@ -15,6 +15,7 @@ const App = () => {
 
     return (
         <NavigationContainer>
+            {/* initialRouteName sets default screen */}
             <Stack.Navigator initialRouteName={'Home'}>
                 {routes.map((route, index) => (
                     <Stack.Screen key={index} name={route.name} component={route.component} />

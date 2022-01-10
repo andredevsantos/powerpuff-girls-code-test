@@ -15,6 +15,7 @@ const Season: React.FunctionComponent<Props> = ({ seasonId, seasonNumber, epSele
     const [showDataEpisodes, setshowDataEpisodes] = useState<IEpisode[]>([]);
     const [isVisible, setIsVisible] = useState(false);
 
+    // Fetches single episode info
     useEffect(() => {
         if (seasonId > 0) {
             fetch(`https://api.tvmaze.com/seasons/${seasonId}/episodes`)
