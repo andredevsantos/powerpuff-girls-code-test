@@ -120,5 +120,6 @@ The **styled components** are stored under the *styled* folder
 - **Text components**
     
     Different styled text components
-    
+    ```tsx
     <TitleText> | <SubTitle> | <BodyText> | <DetailText> | <SmallText>
+    ```
