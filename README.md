@@ -104,7 +104,7 @@ The ***EpisodeScreen*** component holds a single episode’s information.
 
 ## Custom components
 
-The components can be found under the components folder.
+The components can be found under the *components* folder.
 
 ### Animations
 
