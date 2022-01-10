@@ -132,11 +132,9 @@ The **styled components** are stored under the *styled* folder
     ```tsx
     <TitleText> | <SubTitle> | <BodyText> | <DetailText> | <SmallText>
     ```
-    
-### Other components
+
+### **Other components**
 
 - **GenreTag**
     
-    Tags that display tv show genre
-    
-    ![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/35184e1d-9452-4167-bd3c-05c6591ff45f/Untitled.png)
+    Tags used to display tv show genre
