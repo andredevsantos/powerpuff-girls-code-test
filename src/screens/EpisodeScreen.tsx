@@ -32,7 +32,7 @@ const EpisodeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     return (
         <View style={styles.container}>
             <Image
-            style={{width: '100%', aspectRatio: 3/2}}
+            style={{width: '100%', aspectRatio: 3/2, maxWidth: 500, marginHorizontal: 'auto'}}
                 source={{ uri: route.params.image.original }}
             />
             <TitleText>{route.params.name}</TitleText>
@@ -49,7 +49,9 @@ const styles = StyleSheet.create({
         flex: 1,
         // alignItems: 'center',
         // justifyContent: 'center',
-        padding: 30
+        padding: 30,
+        maxWidth: 900,
+        marginHorizontal: 'auto'
     },
     title: {
         fontSize: 20,

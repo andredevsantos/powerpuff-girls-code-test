@@ -66,7 +66,7 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 
 
     return (
-        <ScrollView>
+        <ScrollView style={styles.content}>
             <View style={styles.container}>
                 <View style={styles.ShowIntroContainer}>
                     <View style={styles.ShowImageContainer}>
@@ -101,13 +101,21 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
 };
 
 const styles = StyleSheet.create({
+    content: {
+        flex: 1,
+        alignContent: 'center',
+        width: '100%',
+        backgroundColor: 'white'
+    },
     container: {
         flex: 1,
         justifyContent: 'center',
         width: '100%',
         height: '100%',
         padding: 30,
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        maxWidth: 900,
+        marginHorizontal: 'auto'
     },
     title: {
         fontSize: 30,
@@ -127,14 +135,16 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     ShowImageContainer: {
-        minWidth: 260
+        width: '100%'
+        // minWidth: 260
     },
     ShowImage: {
         resizeMode: 'cover',
         width: '100%',
         aspectRatio: 2 / 3,
         maxHeight: 400,
-        borderRadius: 20
+        borderRadius: 20,
+        marginHorizontal: 'auto'
     }
 });
 
