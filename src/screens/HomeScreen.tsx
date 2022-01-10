@@ -68,10 +68,10 @@ const HomeScreen: React.FunctionComponent<IStackScreenProps> = (props) => {
     return (
         <ScrollView style={styles.content}>
             <View style={styles.container}>
-                <View style={styles.ShowIntroContainer}>
-                    <View style={styles.ShowImageContainer}>
+                <View style={styles.showIntroContainer}>
+                    <View style={styles.showImageContainer}>
                         <Image
-                            style={styles.ShowImage}
+                            style={styles.showImage}
                             source={{
                                 uri: showData.image?.original
                             }} />
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
         height: 1,
         width: '80%'
     },
-    ShowIntroContainer: {
+    showIntroContainer: {
         width: 'auto',
         marginBottom: 30,
         flex: 1,
@@ -134,11 +134,11 @@ const styles = StyleSheet.create({
         flexWrap: 'wrap',
         alignItems: 'center'
     },
-    ShowImageContainer: {
+    showImageContainer: {
         width: '100%'
         // minWidth: 260
     },
-    ShowImage: {
+    showImage: {
         resizeMode: 'cover',
         width: '100%',
         aspectRatio: 2 / 3,

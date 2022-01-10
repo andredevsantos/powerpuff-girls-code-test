@@ -27,7 +27,7 @@ const EpisodeThumb: React.FunctionComponent<Props> = ({ episode, epSelect }) => 
     // Take out <p> tags and make text shorter
     const descriptionText = (text: string) => {
         let originalSummary = text;
-        let cutSummary = RemoveTags(originalSummary, ['<p>', '</p>']).slice(0, 100) + '...'
+        let cutSummary = RemoveTags(originalSummary).slice(0, 100) + '...'
         return cutSummary
     }
 
